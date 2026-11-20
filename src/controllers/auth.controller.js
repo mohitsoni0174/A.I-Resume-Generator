@@ -52,6 +52,53 @@ async function registerUserController(req, res) {
   });
 }
 
+/**
+ * @name loginUserController
+ * @description login a user, expects email and password in the request body, returns a JWT token if successful
+ * @access Public
+ */
+
+async function loginUserController(req, res) {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ message: "Email and password are required." });
+  }
+
+  const user = await userModel.findOne({ email });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(401).json({ message: "Invalid credentials." });
+  }
+
+  const token = jwt.sign(
+    { id: user._id, username: user.username },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1d",
+    },
+  );
+
+  res.cookie("token", token);
+  res.status(200).json({
+    message: "User logged in successfully.",
+    user: {
+      id: user._id,
+      username: user.username,
+      email: user.email,
+    },
+  });
+}
+
 module.exports = {
   registerUserController,
+  loginUserController,
 };
