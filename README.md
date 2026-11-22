@@ -2,8 +2,6 @@
 
 A full stack job interview preparation app built with React, Express, MongoDB, and Google Gemini. It takes a job description and candidate information, then creates a saved interview preparation report with a match score, skill gaps, technical and behavioral questions, and a day-by-day preparation plan. A separate action generates a tailored resume PDF.
 
-> **Project provenance:** This repository follows the [Sheryians Coding School walkthrough](https://youtu.be/zG3hNL08Dro) and its [companion source repository](https://github.com/ankurdotio/interview-ai-yt). Treat this as a tutorial-based learning project unless and until you have made and can explain substantial original changes. See [portfolio notes](docs/PORTFOLIO_NOTES.md) for concrete next steps.
-
 ## Current implementation
 
 - User registration and login with hashed passwords, JWT cookie authentication, logout token blacklisting, and a current-user endpoint.
@@ -76,11 +74,11 @@ Frontend/
 
 ## Environment variables
 
-| Variable | Used for |
-|---|---|
-| `MONGO_URI` | MongoDB connection string |
-| `JWT_SECRET` | Signing and verifying authentication JWTs; use a long random secret |
-| `GOOGLE_GENAI_API_KEY` | Gemini API access |
+| Variable               | Used for                                                            |
+| ---------------------- | ------------------------------------------------------------------- |
+| `MONGO_URI`            | MongoDB connection string                                           |
+| `JWT_SECRET`           | Signing and verifying authentication JWTs; use a long random secret |
+| `GOOGLE_GENAI_API_KEY` | Gemini API access                                                   |
 
 ## API
 
